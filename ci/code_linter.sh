@@ -1,0 +1,1 @@
+pylint ./quantum_simulator --recursive=y --max-line-length=160 --ignore-paths='./ci' --fail-under=7.0 -d=invalid-name,too-many-locals
