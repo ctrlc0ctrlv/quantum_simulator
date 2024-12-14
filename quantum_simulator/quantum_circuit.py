@@ -42,7 +42,7 @@ class QuantumCircuit:
     def width(self):
         """Number of qubits in circuit read-only property"""
         return self._width
-    
+
     def generate_gates_and_unite(self) -> None:
         """
         Generates random gates.
