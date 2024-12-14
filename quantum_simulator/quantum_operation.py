@@ -7,6 +7,7 @@ import numpy as np
 
 class QuantumOperation(ABC):
     """Abstract quantum operation class"""
+
     _matrix: np.ndarray
     _target_qubits: list
 
@@ -66,6 +67,7 @@ class QuantumOperation(ABC):
 
 class OneQubitOperation(QuantumOperation):
     """Single qubit quantum operation class"""
+
     __X: np.ndarray = np.array([[0, 1], [1, 0]])
     "Pauli X operation matrix"
 
@@ -106,6 +108,7 @@ class OneQubitOperation(QuantumOperation):
 
 class TwoQubitsOperation(QuantumOperation):
     """Two qubits quantum operation class"""
+
     __CX: np.ndarray = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]])
     "CX operation matrix"
 
