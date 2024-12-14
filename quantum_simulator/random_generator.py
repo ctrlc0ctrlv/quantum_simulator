@@ -21,7 +21,7 @@ class RandomGenerator:
     _seed: int
     "generator seed"
 
-    _X: int
+    _state: int
     "current generator value"
 
     def __init__(self, m: int = 65537, a: int = 75, c: int = 74, seed: int = 27):
@@ -35,12 +35,14 @@ class RandomGenerator:
         self._state = self.generate_initial_num(seed, n0=99)
 
     def rand_int(self):
-        """Returns random integer value. Updates self"""
+        """Returns random integer value in  `[o, self.m - 1]`. Updates self"""
         self._state = (self.a * self._state + self.c) % self.m
         return self._state
 
     def rand(self, L: int = None):
-        """Returns random number. Updates self"""
+        """
+        Returns random number in `[0, 1]` if `L = None` else in `[-L, L]`. Updates self
+        """
         self._state = self.rand_int()
         return self._state / self.m if L is None else (self._state / self.m - 0.5) * 2 * L
 
