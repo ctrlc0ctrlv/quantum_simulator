@@ -22,7 +22,7 @@
 
 * [x] Added testing script to `.ci`
 * [x] Added RandomGenerator class
-* [ ] Add QuantumCircuit class
+* [x] Add QuantumCircuit class
 * [ ] Add QuantumAlgorithm class
 * [ ] Add QuantumSimulator class
 * [ ] Add Grover algorithm
