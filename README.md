@@ -27,3 +27,5 @@
 * [ ] Add QuantumSimulator class
 * [ ] Add Grover algorithm
 * [ ] Add QAOA algorithm
+* [ ] Add Qiskit simulator support
+* [ ] Add Qulacs simulator support
