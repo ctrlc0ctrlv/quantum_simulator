@@ -10,7 +10,7 @@ class RandomGenerator:
     """
 
     _m: int
-    "m value"
+    "m value - divisor for remainder operation"
 
     _a: int
     "a value"
