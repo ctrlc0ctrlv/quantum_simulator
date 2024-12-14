@@ -75,3 +75,21 @@ class RandomGenerator:
     def state(self):
         """RandomGenerator._state readonly getter"""
         return self._state
+
+    def rand_unitary(self, mode: str) -> np.ndarray:
+        """Builds and returns random unitary matrix using random generator"""
+        assert mode in ["1q", "2q"], f"'{mode}' mode is not supported, should be '1q' or '2q'"
+        if mode == "1q":
+            c = [self.rand(L=100) for _ in range(4)]
+            U = 1j * np.array([[c[0], c[1] + 1j * c[2]], [c[1] - 1j * c[2], c[3]]])
+        else:
+            c = [self.rand(L=100) for _ in range(16)]
+            U = 1j * np.array(
+                [
+                    [c[0], c[1] + 1j * c[2], c[3] + 1j * c[4], c[5] + 1j * c[6]],
+                    [c[1] - 1j * c[2], c[7], c[8] + 1j * c[9], c[10] + 1j * c[11]],
+                    [c[3] - 1j * c[4], c[8] - 1j * c[9], c[12], c[13] + 1j * c[14]],
+                    [c[5] - 1j * c[6], c[10] - 1j * c[11], c[13] - 1j * c[14], c[15]],
+                ]
+            )
+        return sc.linalg.expm(U)
