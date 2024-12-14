@@ -40,10 +40,7 @@ class QuantumOperation(ABC):
         "Target matrix size"
 
     def __matrix_size_is_ok(self, matrix):
-        if (
-            matrix.shape[0] != self.__class__.target_matrix_size()
-            or matrix.shape[1] != self.__class__.target_matrix_size()
-        ):
+        if matrix.shape[0] != self.__class__.target_matrix_size() or matrix.shape[1] != self.__class__.target_matrix_size():
             return False
         return True
 
@@ -80,27 +77,29 @@ class OneQubitOperation(QuantumOperation):
         return 2
 
     @staticmethod
-    def X(target_qubits: list = [0]):
+    def X(target_qubits: list = None):
+        if target_qubits is None:
+            target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__X, target_qubits)
 
     @staticmethod
-    def Y(target_qubits: list = [0]):
+    def Y(target_qubits: list = None):
+        if target_qubits is None:
+            target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__Y, target_qubits)
 
     @staticmethod
-    def Z(target_qubits: list = [0]):
+    def Z(target_qubits: list = None):
+        if target_qubits is None:
+            target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__Z, target_qubits)
 
 
 class TwoQubitsOperation(QuantumOperation):
-    __CX: np.ndarray = np.array(
-        [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]
-    )
+    __CX: np.ndarray = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]])
     "CX operation matrix"
 
-    __CZ: np.ndarray = np.array(
-        [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, -1]]
-    )
+    __CZ: np.ndarray = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, -1]])
     "CZ operation matrix"
 
     def __init__(self, matrix, target_qubits):
@@ -111,9 +110,13 @@ class TwoQubitsOperation(QuantumOperation):
         return 4
 
     @staticmethod
-    def CX(target_qubits: list = [0]):
+    def CX(target_qubits: list = None):
+        if target_qubits is None:
+            target_qubits = [0, 1]
         return TwoQubitsOperation(TwoQubitsOperation.__CX, target_qubits)
 
     @staticmethod
-    def CZ(target_qubits: list = [0]):
+    def CZ(target_qubits: list = None):
+        if target_qubits is None:
+            target_qubits = [0, 1]
         return TwoQubitsOperation(TwoQubitsOperation.__CZ, target_qubits)

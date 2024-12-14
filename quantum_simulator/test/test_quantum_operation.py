@@ -69,10 +69,10 @@ class TestBasicSolver(TestCase):
 
             # Tr(sigma) == 0
             self.assertEqual(np.trace(sigma.matrix), 0)
-            
+
             # sigma^2 = I
             square = sigma.matrix @ sigma.matrix
-            self.assertTrue((square == I.matrix).all())    
+            self.assertTrue((square == I.matrix).all())
 
         XY = X.matrix @ Y.matrix
         self.assertTrue((XY == 1j * Z.matrix).all())
@@ -88,9 +88,4 @@ class TestBasicSolver(TestCase):
             for j, sigma_j in enumerate([X, Y, Z]):
                 if i == j:
                     continue
-                self.assertTrue(
-                    (
-                        sigma_i.matrix @ sigma_j.matrix
-                        == -1 * sigma_j.matrix @ sigma_i.matrix
-                    ).all()
-                )
+                self.assertTrue((sigma_i.matrix @ sigma_j.matrix == -1 * sigma_j.matrix @ sigma_i.matrix).all())
