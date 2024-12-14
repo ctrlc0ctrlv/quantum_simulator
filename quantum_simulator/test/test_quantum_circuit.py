@@ -26,7 +26,7 @@ class TestQuantumCircuit(TestCase):
             quantum_circuit = QuantumCircuit(width=1, depth=100, weight_2q=0.5, seed=seed)
             quantum_circuit.generate_gates_and_unite()
             self.assertEqual(len(quantum_circuit.gate_layers), quantum_circuit.depth)
-            for gate, target_qubits in quantum_circuit.gate_layers:
+            for _, target_qubits in quantum_circuit.gate_layers:
                 self.assertEqual(target_qubits, {0})
 
         # only 2q-gates (no optimizations)
@@ -34,7 +34,7 @@ class TestQuantumCircuit(TestCase):
             quantum_circuit = QuantumCircuit(width=2, depth=100, weight_2q=1, seed=seed)
             quantum_circuit.generate_gates_and_unite()
             self.assertEqual(len(quantum_circuit.gate_layers), quantum_circuit.depth)
-            for gate, target_qubits in quantum_circuit.gate_layers:
+            for _, target_qubits in quantum_circuit.gate_layers:
                 self.assertEqual(target_qubits, {0, 1})
 
         # 1q gates on wide circuit (optimizations)
@@ -45,5 +45,5 @@ class TestQuantumCircuit(TestCase):
 
             last_layer_target = quantum_circuit.gate_layers[-1][1]
             # ensure last layer qubits cannot be moved lower
-            for gate, target_qubits in quantum_circuit.gate_layers:
+            for _, target_qubits in quantum_circuit.gate_layers:
                 self.assertTrue(last_layer_target.issubset(target_qubits))
