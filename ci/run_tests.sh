@@ -1,0 +1,1 @@
+pytest ./../quantum_simulator
