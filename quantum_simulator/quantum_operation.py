@@ -1,9 +1,12 @@
+"""Abstract quantum operation and 1-2-qubit operation module"""
+
 from abc import ABC, abstractmethod
 
 import numpy as np
 
 
 class QuantumOperation(ABC):
+    """Abstract quantum operation class"""
     _matrix: np.ndarray
     _target_qubits: list
 
@@ -19,7 +22,7 @@ class QuantumOperation(ABC):
             raise ValueError(f"Wrong matrix size for {self.__class__.__name__}")
         if not isinstance(target_qubits, list):
             raise TypeError("Value of target_qubits should be a list")
-        if not self.__class__.__target_qubits_size_is_ok(target_qubits):
+        if not self.__class__._target_qubits_size_is_ok(target_qubits):
             raise ValueError(
                 f"Wrong target qubits size: should be {round(np.log2(self.__class__.target_matrix_size()))}, got {len(target_qubits)}",
             )
@@ -28,10 +31,12 @@ class QuantumOperation(ABC):
 
     @property
     def matrix(self) -> np.ndarray:
+        """Returns matrix corresponding to quantum operation"""
         return self._matrix
 
     @property
     def target_qubits(self) -> list:
+        """Returns list of targeted qubits"""
         return self._target_qubits
 
     @staticmethod
@@ -45,7 +50,7 @@ class QuantumOperation(ABC):
         return True
 
     @classmethod
-    def __target_qubits_size_is_ok(cls, target_qubits):
+    def _target_qubits_size_is_ok(cls, target_qubits):
         if 2 ** len(target_qubits) != cls.target_matrix_size():
             return False
         return True
@@ -60,6 +65,7 @@ class QuantumOperation(ABC):
 
 
 class OneQubitOperation(QuantumOperation):
+    """Single qubit quantum operation class"""
     __X: np.ndarray = np.array([[0, 1], [1, 0]])
     "Pauli X operation matrix"
 
@@ -78,24 +84,28 @@ class OneQubitOperation(QuantumOperation):
 
     @staticmethod
     def X(target_qubits: list = None):
+        """X Pauli operation"""
         if target_qubits is None:
             target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__X, target_qubits)
 
     @staticmethod
     def Y(target_qubits: list = None):
+        """Y Pauli operation"""
         if target_qubits is None:
             target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__Y, target_qubits)
 
     @staticmethod
     def Z(target_qubits: list = None):
+        """Z Pauli operation"""
         if target_qubits is None:
             target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__Z, target_qubits)
 
 
 class TwoQubitsOperation(QuantumOperation):
+    """Two qubits quantum operation class"""
     __CX: np.ndarray = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]])
     "CX operation matrix"
 
@@ -111,12 +121,14 @@ class TwoQubitsOperation(QuantumOperation):
 
     @staticmethod
     def CX(target_qubits: list = None):
+        """CX operation"""
         if target_qubits is None:
             target_qubits = [0, 1]
         return TwoQubitsOperation(TwoQubitsOperation.__CX, target_qubits)
 
     @staticmethod
     def CZ(target_qubits: list = None):
+        """CZ operation"""
         if target_qubits is None:
             target_qubits = [0, 1]
         return TwoQubitsOperation(TwoQubitsOperation.__CZ, target_qubits)

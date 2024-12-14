@@ -1,3 +1,5 @@
+"""Quantum operations tests module"""
+
 from unittest import TestCase
 
 import numpy as np
@@ -7,7 +9,8 @@ from quantum_simulator.quantum_operation import OneQubitOperation, TwoQubitsOper
 
 
 @pytest.mark.quant_oper
-class TestBasicSolver(TestCase):
+class TestQuantumOperation(TestCase):
+    """QuantumOperation tests class"""
 
     def test_one_qubit_init(self):
         """Tests OneQubitOperation init"""
