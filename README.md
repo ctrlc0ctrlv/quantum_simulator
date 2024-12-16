@@ -4,6 +4,7 @@
 
 * QuantumOperation class
 * RandomGenerator class
+* QuantumStateVector class
 * Bash scripts for 1-line usage:
   * Code formatter
   * Code linter
@@ -23,6 +24,7 @@
 * [x] Added testing script to `.ci`
 * [x] Added RandomGenerator class
 * [x] Add QuantumCircuit class
+* [x] Add QuantumStateVector class
 * [ ] Add QuantumAlgorithm class
 * [ ] Add QuantumSimulator class
 * [ ] Add Grover algorithm
