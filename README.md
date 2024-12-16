@@ -4,6 +4,7 @@
 
 * QuantumOperation class
 * RandomGenerator class
+* QuantumStateVector class
 * Bash scripts for 1-line usage:
   * Code formatter
   * Code linter
