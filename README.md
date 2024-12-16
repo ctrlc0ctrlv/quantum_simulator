@@ -9,7 +9,6 @@
   * Code formatter
   * Code linter
   * Tests runner
-  * Code tests coverage checker
 
 ## Testing
 
@@ -19,7 +18,6 @@
 
 * Run `./ci/code_formatter.sh` before commits for code formatter
 * Run `./ci/code_linter.sh` and follow linter advices to keep good codestyle
-* Run `./ci/code_coverage.sh` to check code tests coverage. After this check `./htmlcov/index.html` for detailed info
 
 ## TODO
 
@@ -27,6 +25,7 @@
 * [x] Added RandomGenerator class
 * [x] Add QuantumCircuit class
 * [x] Add QuantumStateVector class
+* [x] Add code coverage script to ci
 * [ ] Add QuantumAlgorithm class
 * [ ] Add QuantumSimulator class
 * [ ] Add Grover algorithm
