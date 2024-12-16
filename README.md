@@ -25,6 +25,7 @@
 * [x] Added RandomGenerator class
 * [x] Add QuantumCircuit class
 * [x] Add QuantumStateVector class
+* [x] Add code coverage script to ci
 * [ ] Add QuantumAlgorithm class
 * [ ] Add QuantumSimulator class
 * [ ] Add Grover algorithm
