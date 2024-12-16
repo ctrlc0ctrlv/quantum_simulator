@@ -77,6 +77,12 @@ class OneQubitOperation(QuantumOperation):
     __Z: np.ndarray = np.array([[1, 0], [0, -1]])
     "Pauli Z operation matrix"
 
+    __H: np.ndarray = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
+    "Hadamard H operation matrix"
+
+    __T: np.ndarray = np.array([[1, 0], [0, np.exp(1j * np.pi / 4)]])
+    "T (pi / 8) operation matrix"
+
     def __init__(self, matrix, target_qubits):
         super().__init__(matrix, target_qubits)
 
@@ -104,6 +110,20 @@ class OneQubitOperation(QuantumOperation):
         if target_qubits is None:
             target_qubits = [0]
         return OneQubitOperation(OneQubitOperation.__Z, target_qubits)
+
+    @staticmethod
+    def H(target_qubits: list = None):
+        """Hadamard H operation"""
+        if target_qubits is None:
+            target_qubits = [0]
+        return OneQubitOperation(OneQubitOperation.__H, target_qubits)
+
+    @staticmethod
+    def T(target_qubits: list = None):
+        """T (pi / 8) operation"""
+        if target_qubits is None:
+            target_qubits = [0]
+        return OneQubitOperation(OneQubitOperation.__T, target_qubits)
 
 
 class TwoQubitsOperation(QuantumOperation):
