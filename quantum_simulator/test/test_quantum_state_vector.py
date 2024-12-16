@@ -9,7 +9,7 @@ from qiskit.quantum_info import Statevector as QiskitStateVector
 from quantum_simulator.quantum_state_vector import QuantumStateVector
 
 
-@pytest.mark.random
+@pytest.mark.quant_state_vector
 class TestQuantumStateVector(TestCase):
     """QuantumStateVector tests class"""
 
