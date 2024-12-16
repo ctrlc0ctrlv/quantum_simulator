@@ -59,7 +59,7 @@ class CustomQuantumEmulator(AbstractQuantumEmulator):
         return num & (~(1 << loc))
 
     @staticmethod
-    def _replace_bits(num: int, locs: List[int], vals: list[bool]) -> int:
+    def _replace_bits(num: int, locs: List[int], vals: List[bool]) -> int:
         """in 'num', set bits located at 'locs' to values provided in 'vals'"""
         assert len(locs) == len(vals), f"Number indeces != number of values, got {len(locs)} != {len(vals)}"
         for loc, val in zip(locs, vals):
