@@ -28,9 +28,10 @@
 * [x] Add QuantumCircuit class
 * [x] Add QuantumStateVector class
 * [x] Add code coverage script to ci
+* [x] Add AbstractQuantumEmulator class
+* [ ] Add CustomQuantumEmulator class
+* [ ] Add QiskitQuantumEmulator class
+* [ ] Add QulacsQuantumEmulator class
 * [ ] Add QuantumAlgorithm class
-* [ ] Add QuantumSimulator class
 * [ ] Add Grover algorithm
 * [ ] Add QAOA algorithm
-* [ ] Add Qiskit simulator support
-* [ ] Add Qulacs simulator support
