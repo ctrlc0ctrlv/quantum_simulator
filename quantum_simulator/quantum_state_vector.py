@@ -49,6 +49,11 @@ class QuantumStateVector:
         self._vector = new_vector
 
     @property
+    def num_qubits(self) -> int:
+        """QuantumStateVector._num_qubits getter"""
+        return self._num_qubits
+
+    @property
     def length(self) -> int:
         """Returns vector length"""
         return 2**self._num_qubits
