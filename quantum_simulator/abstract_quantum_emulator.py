@@ -17,3 +17,13 @@ class AbstractQuantumEmulator(ABC):
     @abstractmethod
     def apply_circuit(self, circuit: QuantumCircuit, state_vector: QuantumStateVector) -> QuantumStateVector:
         """Applies quantum circuit to a given state vector"""
+
+    # TODO clarify function arguments
+    @abstractmethod
+    def execute(self, circuit: QuantumCircuit):
+        """Executes given circuit"""
+
+    # TODO clarify function arguments
+    @abstractmethod
+    def execute_shots(self, circuit: QuantumCircuit, n_shots: int):
+        """Executes shots using given circuit"""
