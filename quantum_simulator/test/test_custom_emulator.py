@@ -18,6 +18,8 @@ class TestCustomQuantumEmulator(ABC):
         """Returns `CustomQuantumEmulator` instance"""
         return CustomQuantumEmulator()
 
+    # Quantum gates
+
     @pytest.fixture()
     def pauli_x_gate(self, request):
         """`OneQubitOperation` Pauli X gate on `request.param` qubit"""
@@ -43,9 +45,7 @@ class TestCustomQuantumEmulator(ABC):
         """`OneQubitOperation` T gate on `request.param` qubit"""
         return OneQubitOperation.T([request.param])
 
-
-class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
-    """Tests quantum operations on a single qubit using custom quantum emulator"""
+    # Quantum states
 
     @pytest.fixture()
     def single_qubit_0(self):
@@ -61,6 +61,15 @@ class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
     def single_qubit_plus(self):
         """`QuantumStateVector` |+> state = (|0> + |1>) / sqrt(2)"""
         return QuantumStateVector([1 / np.sqrt(2), 1 / np.sqrt(2)])
+
+    @pytest.fixture
+    def two_qubit_00(self):
+        """`QuantumStateVector` |00> state"""
+        return QuantumStateVector([1, 0, 0, 0])
+
+
+class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
+    """Tests quantum operations on a single qubit using custom quantum emulator"""
 
     @pytest.mark.parametrize("pauli_x_gate", (0,), indirect=True)
     def test_pauli_x(self, emulator, pauli_x_gate, single_qubit_0, single_qubit_1):
@@ -102,11 +111,6 @@ class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
 
 class TestOneQubitOperationTwoQubits(TestCustomQuantumEmulator):
     """Tests quantum operations on a two qubit |00> state using custom quantum emulator"""
-
-    @pytest.fixture
-    def two_qubit_00(self):
-        """`QuantumStateVector` |00> state"""
-        return QuantumStateVector([1, 0, 0, 0])
 
     @pytest.mark.parametrize("pauli_x_gate", (0,), indirect=True)
     def test_apply_pauli_x_first_qubit(self, emulator, two_qubit_00, pauli_x_gate):
