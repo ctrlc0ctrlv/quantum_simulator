@@ -191,3 +191,38 @@ class TestOneQubitOperationTwoQubits(TestCustomQuantumEmulator):
         result = emulator.apply_gate(t_gate, two_qubit_00)
         expected_result = [1, 0, 0, 0]
         assert np.allclose(result.vector, expected_result)
+
+
+class TestTwoQubitOperationTwoQubits(TestCustomQuantumEmulator):
+    """Tests two qubits quantum operations on a two qubit |00> state using custom quantum emulator"""
+
+    @pytest.mark.parametrize(["pauli_x_gate", "cnot_gate"], [(1, [0, 1])], indirect=True)
+    def test_apply_cnot(self, emulator, two_qubit_00, pauli_x_gate, cnot_gate):
+        """Tests CNOT on state |01> -> |11>"""
+        # prepare |01> state
+        result = emulator.apply_gate(pauli_x_gate, two_qubit_00)
+        expected_result = [0, 0, 1, 0]
+        assert np.allclose(result.vector, expected_result)
+
+        # apply CNOT
+        result = emulator.apply_gate(cnot_gate, result)
+        expected_result = [0, 0, 0, 1]
+        assert np.allclose(result.vector, expected_result)
+
+    @pytest.mark.parametrize(["pauli_x_gate", "cnot_gate", "cz_gate"], [(1, [0, 1], [0, 1])], indirect=True)
+    def test_apply_cz(self, emulator, two_qubit_00, pauli_x_gate, cnot_gate, cz_gate):
+        """Tests CZ on state |11> -> -|11>"""
+        # prepare |01> state
+        result = emulator.apply_gate(pauli_x_gate, two_qubit_00)
+        expected_result = [0, 0, 1, 0]
+        assert np.allclose(result.vector, expected_result)
+
+        # prepare |11> state
+        result = emulator.apply_gate(cnot_gate, result)
+        expected_result = [0, 0, 0, 1]
+        assert np.allclose(result.vector, expected_result)
+
+        # apply CZ
+        result = emulator.apply_gate(cz_gate, result)
+        expected_result = [0, 0, 0, -1]
+        assert np.allclose(result.vector, expected_result)
