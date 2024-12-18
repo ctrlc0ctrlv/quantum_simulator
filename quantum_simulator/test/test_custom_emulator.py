@@ -69,7 +69,7 @@ class TestCustomQuantumEmulator(ABC):
 
 
 class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
-    """Tests quantum operations on a single qubit using custom quantum emulator"""
+    """Tests single qubit quantum operations on a single qubit using custom quantum emulator"""
 
     @pytest.mark.parametrize("pauli_x_gate", (0,), indirect=True)
     def test_pauli_x(self, emulator, pauli_x_gate, single_qubit_0, single_qubit_1):
@@ -110,7 +110,7 @@ class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
 
 
 class TestOneQubitOperationTwoQubits(TestCustomQuantumEmulator):
-    """Tests quantum operations on a two qubit |00> state using custom quantum emulator"""
+    """Tests single qubit quantum operations on a two qubit |00> state using custom quantum emulator"""
 
     @pytest.mark.parametrize("pauli_x_gate", (0,), indirect=True)
     def test_apply_pauli_x_first_qubit(self, emulator, two_qubit_00, pauli_x_gate):
