@@ -50,7 +50,7 @@ class TestCustomQuantumEmulator(ABC):
     @pytest.fixture()
     def single_qubit_0(self):
         """`QuantumStateVector` |0> state"""
-        return QuantumStateVector(1)
+        return QuantumStateVector([1, 0])
 
     @pytest.fixture()
     def single_qubit_1(self):
