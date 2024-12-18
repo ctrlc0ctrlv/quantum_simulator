@@ -7,7 +7,7 @@ import pytest
 
 from quantum_simulator.quantum_state_vector import QuantumStateVector
 from quantum_simulator.custom_quantum_emulator import CustomQuantumEmulator
-from quantum_simulator.quantum_operation import OneQubitOperation
+from quantum_simulator.quantum_operation import OneQubitOperation, TwoQubitsOperation
 
 
 class TestCustomQuantumEmulator(ABC):
@@ -44,6 +44,16 @@ class TestCustomQuantumEmulator(ABC):
     def t_gate(self, request):
         """`OneQubitOperation` T gate on `request.param` qubit"""
         return OneQubitOperation.T([request.param])
+
+    @pytest.fixture()
+    def cnot_gate(self, request):
+        """`TwoQubitsOperation` CX (CNOT) gate on `request.param` qubits"""
+        return TwoQubitsOperation.CX(request.param)
+
+    @pytest.fixture()
+    def cz_gate(self, request):
+        """`TwoQubitsOperation` CZ gate on `request.param` qubits"""
+        return TwoQubitsOperation.CZ(request.param)
 
     # Quantum states
 
