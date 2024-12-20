@@ -5,6 +5,7 @@
 * QuantumOperation class
 * RandomGenerator class
 * QuantumStateVector class
+* CustomQuantumEmulator class
 * Bash scripts for 1-line usage:
   * Code formatter
   * Code linter
@@ -29,7 +30,7 @@
 * [x] Add QuantumStateVector class
 * [x] Add code coverage script to ci
 * [x] Add AbstractQuantumEmulator class
-* [ ] Add CustomQuantumEmulator class
+* [x] Add CustomQuantumEmulator class
 * [ ] Add QiskitQuantumEmulator class
 * [ ] Add QulacsQuantumEmulator class
 * [ ] Add QuantumAlgorithm class
