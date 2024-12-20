@@ -6,11 +6,12 @@ import numpy as np
 import pytest
 
 from quantum_simulator.custom_quantum_emulator import CustomQuantumEmulator
+from quantum_simulator.qiskit_quantum_emulator import QiskitQuantumEmulator
 from quantum_simulator.quantum_operation import OneQubitOperation, TwoQubitsOperation
 from quantum_simulator.quantum_state_vector import QuantumStateVector
 
 
-@pytest.mark.parametrize("emulator", [CustomQuantumEmulator()])
+@pytest.mark.parametrize("emulator", [CustomQuantumEmulator(), QiskitQuantumEmulator()])
 class TestQuantumEmulator(ABC):
     """Abstract QuantumEmulator class. Holds testing fixtures. Tests all supported emulators"""
 
