@@ -6,6 +6,7 @@
 * RandomGenerator class
 * QuantumStateVector class
 * CustomQuantumEmulator class
+* QiskitQuantumEmulator class
 * Bash scripts for 1-line usage:
   * Code formatter
   * Code linter
@@ -26,12 +27,12 @@
 
 * [x] Added testing script to `.ci`
 * [x] Added RandomGenerator class
-* [x] Add QuantumCircuit class
-* [x] Add QuantumStateVector class
-* [x] Add code coverage script to ci
-* [x] Add AbstractQuantumEmulator class
-* [x] Add CustomQuantumEmulator class
-* [ ] Add QiskitQuantumEmulator class
+* [x] Added QuantumCircuit class
+* [x] Added QuantumStateVector class
+* [x] Added code coverage script to ci
+* [x] Added AbstractQuantumEmulator class
+* [x] Added CustomQuantumEmulator class
+* [x] Add QiskitQuantumEmulator class
 * [ ] Add QulacsQuantumEmulator class
 * [ ] Add QuantumAlgorithm class
 * [ ] Add Grover algorithm
