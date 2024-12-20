@@ -29,7 +29,7 @@
 * [x] Add QuantumStateVector class
 * [x] Add code coverage script to ci
 * [x] Add AbstractQuantumEmulator class
-* [ ] Add CustomQuantumEmulator class
+* [x] Add CustomQuantumEmulator class
 * [ ] Add QiskitQuantumEmulator class
 * [ ] Add QulacsQuantumEmulator class
 * [ ] Add QuantumAlgorithm class
