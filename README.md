@@ -32,7 +32,7 @@
 * [x] Added code coverage script to ci
 * [x] Added AbstractQuantumEmulator class
 * [x] Added CustomQuantumEmulator class
-* [x] Add QiskitQuantumEmulator class
+* [x] Added QiskitQuantumEmulator class
 * [ ] Add QuantumEmulator circuit tests
 * [ ] Add QulacsQuantumEmulator class
 * [ ] Add QuantumEmulators benchmark (compare emulator results on random circuits)
