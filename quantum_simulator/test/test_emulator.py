@@ -1,22 +1,18 @@
-"""Custom emulator tests module"""
+"""Emulator tests module"""
 
 from abc import ABC
 
 import numpy as np
 import pytest
 
-from quantum_simulator.quantum_state_vector import QuantumStateVector
 from quantum_simulator.custom_quantum_emulator import CustomQuantumEmulator
 from quantum_simulator.quantum_operation import OneQubitOperation, TwoQubitsOperation
+from quantum_simulator.quantum_state_vector import QuantumStateVector
 
 
-class TestCustomQuantumEmulator(ABC):
-    """Abstract CustomQuantumEmulator class. Holds testing fixtures"""
-
-    @pytest.fixture()
-    def emulator(self):
-        """Returns `CustomQuantumEmulator` instance"""
-        return CustomQuantumEmulator()
+@pytest.mark.parametrize("emulator", [CustomQuantumEmulator()])
+class TestQuantumEmulator(ABC):
+    """Abstract QuantumEmulator class. Holds testing fixtures. Tests all supported emulators"""
 
     # Quantum gates
 
@@ -83,8 +79,8 @@ class TestCustomQuantumEmulator(ABC):
         return QuantumStateVector(request.param)
 
 
-class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
-    """Tests single qubit quantum operations on a single qubit using custom quantum emulator"""
+class TestOneQubitOperationSingleQubit(TestQuantumEmulator):
+    """Tests single qubit quantum operations on a single qubit using quantum emulator"""
 
     @pytest.mark.parametrize("pauli_x_gate", (0,), indirect=True)
     def test_pauli_x(self, emulator, pauli_x_gate, single_qubit_0, single_qubit_1):
@@ -124,8 +120,8 @@ class TestCustomQuantumEmulatorSingleQubit(TestCustomQuantumEmulator):
         assert np.allclose(emulator.apply_gate(pauli_z_gate, single_qubit_plus).vector, [1 / np.sqrt(2), -1 / np.sqrt(2)])
 
 
-class TestOneQubitOperationTwoQubits(TestCustomQuantumEmulator):
-    """Tests single qubit quantum operations on a two qubit |00> state using custom quantum emulator"""
+class TestOneQubitOperationTwoQubits(TestQuantumEmulator):
+    """Tests single qubit quantum operations on a two qubit |00> state using quantum emulator"""
 
     @pytest.mark.parametrize("pauli_x_gate", (0,), indirect=True)
     def test_apply_pauli_x_first_qubit(self, emulator, two_qubit_00, pauli_x_gate):
@@ -198,8 +194,8 @@ class TestOneQubitOperationTwoQubits(TestCustomQuantumEmulator):
         assert np.allclose(result.vector, expected_result)
 
 
-class TestTwoQubitOperationTwoQubits(TestCustomQuantumEmulator):
-    """Tests two qubits quantum operations on a two qubit |00> state using custom quantum emulator"""
+class TestTwoQubitOperationTwoQubits(TestQuantumEmulator):
+    """Tests two qubits quantum operations on a two qubit |00> state using quantum emulator"""
 
     @pytest.mark.parametrize(["two_qubit_input_state", "cnot_gate"], [([0, 0, 1, 0], [0, 1])], indirect=True)
     def test_apply_cnot(self, emulator, two_qubit_input_state, cnot_gate):
